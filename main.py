@@ -36,11 +36,12 @@ def get_weather():
   if city is None:
     print('请设置城市')
     return None
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  # url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "http://apis.juhe.cn/simpleWeather/query?key=8b6ccec06b3867524d4adba574348857&city=" + city
   res = requests.get(url).json()
   if res is None:
     return None
-  weather = res['data']['list'][0]
+  weather = res['result']['realtime']
   return weather
 
 # 获取当前日期为星期几
@@ -105,38 +106,52 @@ data = {
     "value": get_week_day(),
     "color": get_random_color()
   },
+  # 天气
   "weather": {
-    "value": weather['weather'],
+    "value": weather['info'],
     "color": get_random_color()
   },
+  # 湿度
   "humidity": {
     "value": weather['humidity'],
     "color": get_random_color()
   },
+  # 风向
   "wind": {
-    "value": weather['wind'],
+    "value": weather['direct'],
     "color": get_random_color()
   },
-  "air_data": {
-    "value": weather['airData'],
+  # 风力
+  "power": {
+    "value": weather['power'],
     "color": get_random_color()
   },
-  "air_quality": {
-    "value": weather['airQuality'],
+  # 	空气质量指数
+  "aqi": {
+    "value": weather['aqi'],
     "color": get_random_color()
   },
+  #"air_data": {
+  #  "value": weather['airData'],
+  #  "color": get_random_color()
+  #},
+  #"air_quality": {
+  #  "value": weather['airQuality'],
+  #  "color": get_random_color()
+  #},
+  # 温度
   "temperature": {
-    "value": math.floor(weather['temp']),
+    "value": math.floor(weather['temperature']),
     "color": get_random_color()
   },
-  "highest": {
-    "value": math.floor(weather['high']),
-    "color": get_random_color()
-  },
-  "lowest": {
-    "value": math.floor(weather['low']),
-    "color": get_random_color()
-  },
+  #"highest": {
+  #  "value": math.floor(weather['high']),
+  #  "color": get_random_color()
+  #},
+  #"lowest": {
+  #  "value": math.floor(weather['low']),
+  #  "color": get_random_color()
+  #},
   "love_days": {
     "value": get_memorial_days_count(),
     "color": get_random_color()
