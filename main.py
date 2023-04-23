@@ -141,7 +141,7 @@ data = {
   #},
   # 温度
   "temperature": {
-    "value": math.floor(weather['temperature']),
+    "value": weather['temperature'],
     "color": get_random_color()
   },
   #"highest": {
