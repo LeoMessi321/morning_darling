@@ -123,7 +123,7 @@ data = {
     "color": get_random_color()
   },
   # 风向
-  "wind": {
+  "direct": {
     "value": nowWeather['direct'],
     "color": get_random_color()
   },
