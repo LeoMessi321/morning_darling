@@ -41,7 +41,7 @@ def get_weather():
   res = requests.get(url).json()
   if res is None:
     return None
-  weather = res['result']['realtime']
+  weather = res['result']
   return weather
 
 # 获取当前日期为星期几
@@ -93,6 +93,12 @@ weather = get_weather()
 if weather is None:
   print('获取天气失败')
   exit(422)
+nowWeather = weather['realtime']
+future0 = weather['future'][0]
+future1 = weather['future'][1]
+future2 = weather['future'][2]
+future3 = weather['future'][3]
+future4 = weather['future'][4]
 data = {
   "city": {
     "value": city,
@@ -108,27 +114,27 @@ data = {
   },
   # 天气
   "weather": {
-    "value": weather['info'],
+    "value": nowWeather['info'],
     "color": get_random_color()
   },
   # 湿度
   "humidity": {
-    "value": weather['humidity'],
+    "value": nowWeather['humidity'],
     "color": get_random_color()
   },
   # 风向
   "wind": {
-    "value": weather['direct'],
+    "value": nowWeather['direct'],
     "color": get_random_color()
   },
   # 风力
   "power": {
-    "value": weather['power'],
+    "value": nowWeather['power'],
     "color": get_random_color()
   },
   # 	空气质量指数
   "aqi": {
-    "value": weather['aqi'],
+    "value": nowWeather['aqi'],
     "color": get_random_color()
   },
   #"air_data": {
@@ -141,7 +147,7 @@ data = {
   #},
   # 温度
   "temperature": {
-    "value": weather['temperature'],
+    "value": nowWeather['temperature'],
     "color": get_random_color()
   },
   #"highest": {
@@ -154,6 +160,81 @@ data = {
   #},
   "love_days": {
     "value": get_memorial_days_count(),
+    "color": get_random_color()
+  },
+  # future0
+  "future0date": {
+    "value": future0['date'],
+    "color": get_random_color()
+  },
+  # future0
+  "future0temperature": {
+    "value": future0['temperature'],
+    "color": get_random_color()
+  },
+  # future0
+  "future0weather": {
+    "value": future0['weather'],
+    "color": get_random_color()
+  },
+  # future1
+  "future1date": {
+    "value": future1['date'],
+    "color": get_random_color()
+  },
+  # future1
+  "future1temperature": {
+    "value": future1['temperature'],
+    "color": get_random_color()
+  },
+  # future1
+  "future1weather": {
+    "value": future1['weather'],
+    "color": get_random_color()
+  },
+  # future2
+  "future2date": {
+    "value": future2['date'],
+    "color": get_random_color()
+  },
+  # future2
+  "future2temperature": {
+    "value": future2['temperature'],
+    "color": get_random_color()
+  },
+  # future2
+  "future2weather": {
+    "value": future2['weather'],
+    "color": get_random_color()
+  },
+  # future3
+  "future3date": {
+    "value": future3['date'],
+    "color": get_random_color()
+  },
+  # future3
+  "future3temperature": {
+    "value": future3['temperature'],
+    "color": get_random_color()
+  },
+  # future3
+  "future3weather": {
+    "value": future3['weather'],
+    "color": get_random_color()
+  },
+  # future4
+  "future4date": {
+    "value": future4['date'],
+    "color": get_random_color()
+  },
+  # future4
+  "future4temperature": {
+    "value": future4['temperature'],
+    "color": get_random_color()
+  },
+  # future4
+  "future4weather": {
+    "value": future4['weather'],
     "color": get_random_color()
   },
   "birthday_left": {
